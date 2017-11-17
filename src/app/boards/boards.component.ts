@@ -9,7 +9,8 @@ import {AuthService} from '../auth.service';
 })
 export class BoardsComponent implements OnInit {
 
-  private user: firebase.User;
+  user: firebase.User;
+
   constructor(
     private authService: AuthService
   ) { }

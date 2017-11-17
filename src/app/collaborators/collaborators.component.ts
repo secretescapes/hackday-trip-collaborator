@@ -11,9 +11,9 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 })
 export class CollaboratorsComponent implements OnInit {
 
-  private collaborators: Observable<any[]>;
+  collaborators: Observable<any[]>;
+  form: FormGroup;
   private boardId: string;
-  private form: FormGroup;
 
   constructor(
     private route: ActivatedRoute,

@@ -10,7 +10,7 @@ import {Observable} from 'rxjs';
 })
 export class BoardComponent implements OnInit {
 
-  private board: Observable<any[]>;
+  board: Observable<any[]>;
 
   constructor(
     private route: ActivatedRoute,
