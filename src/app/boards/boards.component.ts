@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import * as firebase from 'firebase';
+import {AuthService} from '../auth.service';
 
 @Component({
   selector: 'app-boards',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BoardsComponent implements OnInit {
 
-  constructor() { }
+  private user: firebase.User;
+  constructor(
+    private authService: AuthService
+  ) { }
 
   ngOnInit() {
+    this.user = this.authService.getUser();
   }
 
 }

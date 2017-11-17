@@ -6,6 +6,7 @@ import {AuthComponent} from './auth/auth.component';
 import {LoginComponent} from './login/login.component';
 import {SignupComponent} from './signup/signup.component';
 import {LogoutComponent} from './logout/logout.component';
+import {AuthGuardService} from './auth-guard.service';
 const routes: Routes = [
   { path: '', redirectTo: '/app/boards', pathMatch: 'full' },
   {path: 'auth', component: AuthComponent, children: [
@@ -14,11 +15,12 @@ const routes: Routes = [
     { path: 'signup', component: SignupComponent }
   ]},
   {path: 'app', component: RootComponent, children: [
-    { path: 'boards', component: BoardsComponent }
+    { path: 'boards', component: BoardsComponent, canActivate: [AuthGuardService] }
   ]}
 ];
 @NgModule({
   imports: [ RouterModule.forRoot(routes) ],
-  exports: [ RouterModule ]
+  exports: [ RouterModule ],
+  providers: [AuthGuardService]
 })
 export class AppRoutingModule {}
