@@ -16,7 +16,9 @@ export class RootComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.user = this.authService.getUser();
+    this.authService.getUser().then(user => {
+      this.user = user;
+    });
   }
 
 }

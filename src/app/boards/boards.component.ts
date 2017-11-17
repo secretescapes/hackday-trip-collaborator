@@ -15,7 +15,9 @@ export class BoardsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.user = this.authService.getUser();
+    this.authService.getUser().then(user => {
+      this.user = user;
+    });
   }
 
 }

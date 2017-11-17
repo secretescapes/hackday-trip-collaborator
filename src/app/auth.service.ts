@@ -19,8 +19,12 @@ export class AuthService {
     return this.angularFireAuth.auth.signOut();
   }
 
-  getUser(): firebase.User {
-    return this.angularFireAuth.auth.currentUser;
+  getUser(): Promise<firebase.User> {
+    return new Promise((resolve) => {
+      this.angularFireAuth.authState.subscribe((auth) => {
+        resolve(auth);
+      });
+    });
   }
 
 }
