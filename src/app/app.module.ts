@@ -19,6 +19,7 @@ import { BoardComponent } from './board/board.component';
 import {BoardService} from './board.service';
 import {AngularFireDatabaseModule} from 'angularfire2/database';
 import { CollaboratorsComponent } from './collaborators/collaborators.component';
+import {BoardGuardService} from './board-guard.service';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { CollaboratorsComponent } from './collaborators/collaborators.component'
   ],
   providers: [
     AuthService,
+    BoardGuardService,
     BoardService
   ],
   bootstrap: [AppComponent]
