@@ -38,7 +38,7 @@ export class CollaboratorsComponent implements OnInit {
   onAddCollaborator() {
     if (this.form.valid) {
       this.boardService.addCollaboratorToBoard(this.boardId, this.form.value.email);
-      this.form.value.email = '';
+      this.form.reset();
     }
   }
 }
