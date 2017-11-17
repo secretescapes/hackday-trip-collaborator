@@ -18,6 +18,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { BoardComponent } from './board/board.component';
 import {BoardService} from './board.service';
 import {AngularFireDatabaseModule} from 'angularfire2/database';
+import { CollaboratorsComponent } from './collaborators/collaborators.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import {AngularFireDatabaseModule} from 'angularfire2/database';
     LoginComponent,
     SignupComponent,
     LogoutComponent,
-    BoardComponent
+    BoardComponent,
+    CollaboratorsComponent
   ],
   imports: [
     BrowserModule,

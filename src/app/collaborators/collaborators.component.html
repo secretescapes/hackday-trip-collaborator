@@ -1,0 +1,10 @@
+<h2>Collaborators</h2>
+<ul>
+  <li *ngFor="let collaborator of collaborators | async">
+    {{ collaborator.email }}
+  </li>
+</ul>
+<form [formGroup]="form" (ngSubmit)="onAddCollaborator()">
+  <input type="email" formControlName="email"/>
+  <button type="submit" [disabled]="!form.valid">Add</button>
+</form>

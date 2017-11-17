@@ -28,4 +28,19 @@ export class BoardService {
     return this.authService.getUser()
       .then(user => this.firebaseDatabase.object(`users/${user.uid}/boards/${boardId}`).valueChanges());
   }
+
+  getCollaborators(boardId: string): Promise<Observable<any>> {
+    return this.authService.getUser()
+      .then(user => this.firebaseDatabase.list(`users/${user.uid}/boards/${boardId}/collaborators`).valueChanges());
+  }
+
+  addCollaboratorToBoard(boardId: string, collaborator: string): Promise<string> {
+    return this.authService.getUser()
+      .then(user => {
+        return this.firebaseDatabase.list(`users/${user.uid}/boards/${boardId}/collaborators`).push({
+          email: collaborator,
+          admin: false
+        }).key;
+      });
+  }
 }

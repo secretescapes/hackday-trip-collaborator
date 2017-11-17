@@ -8,6 +8,7 @@ import {SignupComponent} from './signup/signup.component';
 import {LogoutComponent} from './logout/logout.component';
 import {AuthGuardService} from './auth-guard.service';
 import {BoardComponent} from './board/board.component';
+import {CollaboratorsComponent} from './collaborators/collaborators.component';
 const routes: Routes = [
   { path: '', redirectTo: '/app/boards', pathMatch: 'full' },
   {path: 'auth', component: AuthComponent, children: [
@@ -18,6 +19,7 @@ const routes: Routes = [
   {path: 'app', component: RootComponent, children: [
     { path: 'boards', component: BoardsComponent, canActivate: [AuthGuardService] },
     { path: 'board/:id', component: BoardComponent, canActivate: [AuthGuardService] },
+    { path: 'board/:id/collaborators', component: CollaboratorsComponent, canActivate: [AuthGuardService] },
     { path: 'board', component: BoardComponent, canActivate: [AuthGuardService] }
   ]}
 ];
