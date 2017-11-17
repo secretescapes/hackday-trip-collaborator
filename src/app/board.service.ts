@@ -13,7 +13,15 @@ export class BoardService {
 
   createBoard(): Promise<string> {
     return Promise.resolve(this.authService.getUser())
-      .then(user => this.firebaseDatabase.list(`users/${user.uid}/boards`).push({created: Date.now()}).key);
+      .then(user => {
+        return {key: this.firebaseDatabase.list(`users/${user.uid}/boards`).push({created: Date.now()}).key, user: user};
+      })
+      .then(response => {
+        this.firebaseDatabase.list(`users/${response.user.uid}/boards/${response.key}/collaborators`)
+          .push({email: response.user.email, admin: true});
+        return response.key;
+      })
+      ;
   }
 
   getBoard(boardId: string): Promise<Observable<any>> {
