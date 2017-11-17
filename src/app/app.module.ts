@@ -6,18 +6,22 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import {AngularFireModule} from 'angularfire2';
 import {environment} from '../environments/environment';
-import {AngularFireAuthModule} from 'angularfire2/auth';
+import { BoardsComponent } from './boards/boards.component';
+import {AppRoutingModule} from './app-routing.module';
+import { RootComponent } from './root/root.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    BoardsComponent,
+    RootComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAuthModule
+    AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebase)
   ],
   providers: [],
   bootstrap: [AppComponent]
