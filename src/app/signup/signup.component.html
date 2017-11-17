@@ -1,3 +1,15 @@
-<p>
-  signup works!
-</p>
+<form [formGroup]="form" (ngSubmit)="onSignUp()">
+  <label for="email">Email:</label>
+  <input id="email" formControlName="email" type="email">
+
+  <label for="password">Password:</label>
+  <input id="password" formControlName="password" type="password">
+
+  <label for="confirm-password">Password:</label>
+  <input id="confirm-password" formControlName="confirmPassword" type="password">
+
+
+  <button id='login-button' type="submit" [disabled]="!form.valid">Sign Up</button>
+
+  <a id="signup-link" [routerLink]="['/auth/login']">Login</a>
+</form>
