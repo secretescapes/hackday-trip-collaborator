@@ -1,2 +1,4 @@
 <h2>Root</h2>
+<a *ngIf="user" [routerLink]="['/auth/logout']">Logout</a>
+<a *ngIf="!user" [routerLink]="['/auth/login']">Login</a>
 <router-outlet></router-outlet>

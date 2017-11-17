@@ -12,6 +12,9 @@ import { RootComponent } from './root/root.component';
 import { AuthComponent } from './auth/auth.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
+import {AngularFireAuthModule} from 'angularfire2/auth';
+import {AuthService} from './auth.service';
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,8 @@ import { SignupComponent } from './signup/signup.component';
     RootComponent,
     AuthComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
@@ -28,9 +32,12 @@ import { SignupComponent } from './signup/signup.component';
     HttpModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebase)
   ],
-  providers: [],
+  providers: [
+    AuthService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

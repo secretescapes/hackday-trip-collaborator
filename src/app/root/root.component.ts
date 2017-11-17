@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthService} from '../auth.service';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-root',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RootComponent implements OnInit {
 
-  constructor() { }
+  user: firebase.User;
+
+  constructor(
+    private authService: AuthService
+  ) { }
 
   ngOnInit() {
+    this.user = this.authService.getUser();
   }
 
 }
