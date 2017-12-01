@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Observable} from 'rxjs';
 import {ActivatedRoute} from '@angular/router';
-import {BoardService} from '../board.service';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {CollaboratorsService} from '../collaborators.service';
 
 @Component({
   selector: 'app-collaborators',
@@ -17,7 +17,7 @@ export class CollaboratorsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private boardService: BoardService,
+    private collaboratorsService: CollaboratorsService,
     private formBuilder: FormBuilder
   ) { }
 
@@ -29,7 +29,7 @@ export class CollaboratorsComponent implements OnInit {
     this.route.params.subscribe((params: any) => {
       if (params.id) {
         this.boardId = params.id;
-        this.boardService.getCollaborators(this.boardId)
+        this.collaboratorsService.getCollaborators(this.boardId)
           .then(collaborators => this.collaborators = collaborators);
       }
     });
@@ -37,7 +37,7 @@ export class CollaboratorsComponent implements OnInit {
 
   onAddCollaborator() {
     if (this.form.valid) {
-      this.boardService.addCollaboratorToBoard(this.boardId, this.form.value.email, false);
+      this.collaboratorsService.addCollaboratorToBoard(this.boardId, this.form.value.email, false);
       this.form.reset();
     }
   }

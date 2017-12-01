@@ -23,6 +23,9 @@ import {BoardGuardService} from './board-guard.service';
 import { BoardNameComponent } from './board-name/board-name.component';
 import { BudgetComponent } from './budget/budget.component';
 import {FirebaseUtilsService} from 'app/firebase-utils.service';
+import {BoardNameService} from './board-name.service';
+import {BudgetService} from './budget.service';
+import {CollaboratorsService} from './collaborators.service';
 
 @NgModule({
   declarations: [
@@ -52,7 +55,10 @@ import {FirebaseUtilsService} from 'app/firebase-utils.service';
     AuthService,
     BoardGuardService,
     BoardService,
-    FirebaseUtilsService
+    FirebaseUtilsService,
+    BoardNameService,
+    BudgetService,
+    CollaboratorsService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Observable} from 'rxjs';
-import {BoardService} from '../board.service';
+import {BoardNameService} from '../board-name.service';
 
 @Component({
   selector: 'app-board-name',
@@ -17,14 +17,14 @@ export class BoardNameComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private boardService: BoardService
+    private boardNameService: BoardNameService
   ) { }
 
   ngOnInit() {
     this.route.params.subscribe((params: any) => {
       if (params.id) {
         this.boardId = params.id;
-        this.boardService.getNameObservable(this.boardId).then(name => this.name = name);
+        this.boardNameService.getNameObservable(this.boardId).then(name => this.name = name);
       }
     });
   }
@@ -32,14 +32,14 @@ export class BoardNameComponent implements OnInit {
   switchEditMode() {
     this.editMode = !this.editMode;
     if (this.editMode) {
-      this.boardService.getName(this.boardId).then(name => {
+      this.boardNameService.getName(this.boardId).then(name => {
         this.newName = name;
       });
     }
   }
 
   updateName() {
-    this.boardService.updateName(this.boardId, this.newName).then(() => {
+    this.boardNameService.updateName(this.boardId, this.newName).then(() => {
       this.editMode = false;
     });
   }

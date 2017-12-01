@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Observable} from 'rxjs';
-import {BoardService} from '../board.service';
 import {ActivatedRoute} from '@angular/router';
+import {BudgetService} from '../budget.service';
 
 @Component({
   selector: 'app-budget',
@@ -19,14 +19,14 @@ export class BudgetComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private boardService: BoardService
+    private budgetService: BudgetService
   ) { }
 
   ngOnInit() {
     this.route.params.subscribe((params: any) => {
       if (params.id) {
         this.boardId = params.id;
-        this.boardService.getBudgetObservableForCurrentUser(this.boardId).then(budget => this.budget = budget);
+        this.budgetService.getBudgetObservableForCurrentUser(this.boardId).then(budget => this.budget = budget);
       }
     });
   }
@@ -34,7 +34,7 @@ export class BudgetComponent implements OnInit {
   switchEditMode() {
    this.editMode = !this.editMode;
    if (this.editMode) {
-    this.boardService.getBudgetForCurrentUser(this.boardId).then(budget => {
+    this.budgetService.getBudgetForCurrentUser(this.boardId).then(budget => {
       this.newMin = budget.min;
       this.newMax = budget.max;
     });
@@ -42,7 +42,7 @@ export class BudgetComponent implements OnInit {
   }
 
   updateBudget() {
-    this.boardService.updateBudgetForCurrentUser(this.boardId, {min: this.newMin, max: this.newMax}).then(() => {
+    this.budgetService.updateBudgetForCurrentUser(this.boardId, {min: this.newMin, max: this.newMax}).then(() => {
       this.editMode = false;
     });
   }

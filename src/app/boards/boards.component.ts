@@ -3,6 +3,7 @@ import * as firebase from 'firebase';
 import {AuthService} from '../auth.service';
 import {Observable} from 'rxjs';
 import {BoardService} from '../board.service';
+import {BoardNameService} from '../board-name.service';
 
 @Component({
   selector: 'app-boards',
@@ -16,7 +17,8 @@ export class BoardsComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private boardService: BoardService
+    private boardService: BoardService,
+    private boardNameService: BoardNameService
   ) { }
 
   ngOnInit() {
@@ -26,7 +28,7 @@ export class BoardsComponent implements OnInit {
 
     this.boardService.getBoardsForCurrentUser().then(boards => {
       if (boards) {
-        Object.keys(boards).map(key => this.boardService.getName(key).then(name => this.boards.push({name: name, boardId: key})));
+        Object.keys(boards).map(key => this.boardNameService.getName(key).then(name => this.boards.push({name: name, boardId: key})));
       }
     });
   }
