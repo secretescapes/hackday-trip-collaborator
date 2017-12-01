@@ -3,7 +3,7 @@
 </p>
 <a [routerLink]="['/app/board']">New</a>
 <ul>
-  <li *ngFor="let board of boards | async">
+  <li *ngFor="let board of boards">
     <a [routerLink]="['/app/board', board.boardId]">{{board.name}}</a>
   </li>
 </ul>

@@ -12,7 +12,7 @@ import {BoardService} from '../board.service';
 export class BoardsComponent implements OnInit {
 
   user: firebase.User;
-  boards: Observable<any>;
+  boards = [];
 
   constructor(
     private authService: AuthService,
@@ -24,7 +24,9 @@ export class BoardsComponent implements OnInit {
       this.user = user;
     });
 
-    this.boardService.getBoardsForCurrentUser().then(boards => this.boards = boards);
+    this.boardService.getBoardsForCurrentUser().then(boards => {
+      Object.keys(boards).map(key => this.boardService.getName(key).then(name => this.boards.push({name: name, boardId: key})));
+    });
   }
 
 }

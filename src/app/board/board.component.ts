@@ -21,7 +21,7 @@ export class BoardComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe((params: any) => {
       if (params.id) {
-        this.boardService.getBoard(params.id).then(board => this.board = board);
+        this.boardService.getBoardObservable(params.id).then(board => this.board = board);
       } else {
         this.boardService.createBoard().then(key => {
           this.router.navigate([`/app/board/${key}`]);

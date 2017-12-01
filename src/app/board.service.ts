@@ -32,18 +32,18 @@ export class BoardService {
         return response;
       }).then(response => {
         // Update index of boards for user
-        this.firebaseDatabase.list(`users/${response.user.uid}/boards`)
-          .push({
-            boardId: response.key,
-            name: this.DEFAULT_BOARD_NAME,
-            admin: true});
+        this.firebaseDatabase.object(`users/${response.user.uid}/boards/${response.key}`).set(true);
         return response.key;
       });
   }
 
-  getBoardsForCurrentUser(): Promise<Observable<any>> {
+  getBoardsForCurrentUser(): Promise<any> {
     return Promise.resolve(this.authService.getUser()
-      .then(user => this.firebaseDatabase.list(`users/${user.uid}/boards`).valueChanges()));
+      .then(user => {
+        return this.firebaseDatabase.database.ref(`users/${user.uid}/boards`).once('value').then(snapshot => snapshot.val());
+      }));
+    // return Promise.resolve(this.authService.getUser()
+    //   .then(user => this.firebaseDatabase.list(`users/${user.uid}/boards`).valueChanges()));
 }
 
   updateName(boardId: string, newName: string): Promise<void> {
@@ -58,7 +58,7 @@ export class BoardService {
     return Promise.resolve(this.firebaseDatabase.database.ref(`boards/${boardId}/name`).once('value').then(snapshot => snapshot.val()));
   }
 
-  getBoard(boardId: string): Promise<Observable<any>> {
+  getBoardObservable(boardId: string): Promise<Observable<any>> {
     return Promise.resolve(this.firebaseDatabase.object(`boards/${boardId}`).valueChanges());
   }
 
