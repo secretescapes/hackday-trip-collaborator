@@ -1,0 +1,12 @@
+<p>
+  <span *ngIf="!editMode">
+    {{name | async}}
+    <button (click)="switchEditMode()">Change</button>
+  </span>
+
+  <span *ngIf="editMode">
+    <input [(ngModel)]="newName" type="text"/>
+    <button (click)="updateName()">Save</button>
+    <button (click)="switchEditMode()">Close</button>
+  </span>
+</p>

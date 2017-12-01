@@ -21,7 +21,23 @@ export class BoardService {
         this.firebaseDatabase.list(`boards/${response.key}/collaborators`)
           .push({email: response.user.email, admin: true});
         return response.key;
+      })
+      .then(key => {
+        this.firebaseDatabase.object(`boards/${key}`).update({name: 'New Board'});
+        return key;
       });
+  }
+
+  updateName(boardId: string, newName: string): Promise<void> {
+    return Promise.resolve(this.firebaseDatabase.object(`boards/${boardId}`).update({name: newName}));
+  }
+
+  getNameObservable(boardId: string): Promise<Observable<any>> {
+    return Promise.resolve(this.firebaseDatabase.object(`boards/${boardId}/name`).valueChanges());
+  }
+
+  getName(boardId: string): Promise<string> {
+    return Promise.resolve(this.firebaseDatabase.database.ref(`boards/${boardId}/name`).once('value').then(snapshot => snapshot.val()));
   }
 
   getBoard(boardId: string): Promise<Observable<any>> {

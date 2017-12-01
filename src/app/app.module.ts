@@ -20,6 +20,7 @@ import {BoardService} from './board.service';
 import {AngularFireDatabaseModule} from 'angularfire2/database';
 import { CollaboratorsComponent } from './collaborators/collaborators.component';
 import {BoardGuardService} from './board-guard.service';
+import { BoardNameComponent } from './board-name/board-name.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import {BoardGuardService} from './board-guard.service';
     SignupComponent,
     LogoutComponent,
     BoardComponent,
-    CollaboratorsComponent
+    CollaboratorsComponent,
+    BoardNameComponent
   ],
   imports: [
     BrowserModule,
