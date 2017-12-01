@@ -22,12 +22,20 @@ export class BudgetComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.params.subscribe((params: any) => {
-      if (params.id) {
-        this.boardId = params.id;
-        this.budgetService.getBudgetObservableForCurrentUser(this.boardId).then(budget => this.budget = budget);
-      }
-    });
+    this.setBoardIdFromParams();
+  }
+
+  private setBoardIdFromParams() {
+    this.route.params.subscribe((params: any) => params.id ? this.onBoardId(params.id) : this.setBoardIdFromParentParams());
+  }
+
+  private setBoardIdFromParentParams() {
+    this.route.parent.params.subscribe((params: any) => params.id ? this.onBoardId(params.id) : null);
+  }
+
+  private onBoardId(boardId: string) {
+    this.boardId = boardId;
+    this.budgetService.getBudgetObservableForCurrentUser(this.boardId).then(budget => this.budget = budget);
   }
 
   switchEditMode() {
