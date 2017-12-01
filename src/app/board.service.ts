@@ -59,9 +59,15 @@ export class BoardService {
     return Promise.resolve(this.firebaseDatabase.database.ref(`boards/${boardId}/name`).once('value').then(snapshot => snapshot.val()));
   }
 
-  // getBudgetObservable(boardId: string, collaborator: string): Promise<any> {
-    // return Promise.resolve(this.);
-  // }
+  getBudgetObservableForCurrentUser(boardId: string): Promise<any> {
+    return this.authService.getUser().then(user => this.getBudgetObservable(boardId, user.email));
+  }
+  getBudgetObservable(boardId: string, collaborator: string): Promise<any> {
+    return Promise.resolve(
+      this.firebaseDatabase
+        .object(`boards/${boardId}/collaborators/${this.fbUtilsService.sanitizeKey(collaborator)}/budget`).valueChanges()
+    );
+  }
 
   getBoardObservable(boardId: string): Promise<Observable<any>> {
     return Promise.resolve(this.firebaseDatabase.object(`boards/${boardId}`).valueChanges());
