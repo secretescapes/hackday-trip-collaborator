@@ -2,3 +2,8 @@
   Boards for {{user?.email}}
 </p>
 <a [routerLink]="['/app/board']">New</a>
+<ul>
+  <li *ngFor="let board of boards | async">
+    <a [routerLink]="['/app/board', board.boardId]">{{board.name}}</a>
+  </li>
+</ul>

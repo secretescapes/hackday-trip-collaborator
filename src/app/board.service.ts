@@ -41,6 +41,11 @@ export class BoardService {
       });
   }
 
+  getBoardsForCurrentUser(): Promise<Observable<any>> {
+    return Promise.resolve(this.authService.getUser()
+      .then(user => this.firebaseDatabase.list(`users/${user.uid}/boards`).valueChanges()));
+}
+
   updateName(boardId: string, newName: string): Promise<void> {
     return Promise.resolve(this.firebaseDatabase.object(`boards/${boardId}`).update({name: newName}));
   }
