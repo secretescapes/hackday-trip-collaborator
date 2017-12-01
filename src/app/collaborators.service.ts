@@ -25,7 +25,7 @@ export class CollaboratorsService {
           email: collaborator,
           admin: isAdmin
         })
-        .then(() => this.budgetService.createBudgetForCurrentUser(boardId)));
+        .then(() => this.budgetService.createBudget(boardId, collaborator)));
   }
 
   isCollaboratorAllowedToBoard(boardId: string, collaborator: string): Promise<boolean> {

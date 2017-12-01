@@ -32,8 +32,8 @@ export class BudgetService {
     );
   }
 
-  createBudgetForCurrentUser(boardId: string): Promise<any> {
-    return this.updateBudgetForCurrentUser(boardId, {min: this.DEFAULT_BUDGET_MIN, max: this.DEFAULT_BUDGET_MAX});
+  createBudget(boardId: string, collaborator: string): Promise<any> {
+    return this.updateBudget(boardId, collaborator, {min: this.DEFAULT_BUDGET_MIN, max: this.DEFAULT_BUDGET_MAX});
   }
 
   updateBudget(boardId: string, collaborator: string, budget: any): Promise<any> {
