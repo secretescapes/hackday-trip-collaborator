@@ -6,6 +6,9 @@ import {AngularFireDatabase} from 'angularfire2/database';
 @Injectable()
 export class BudgetService {
 
+  DEFAULT_BUDGET_MIN = '100';
+  DEFAULT_BUDGET_MAX = '1000';
+
   constructor(
     private firebaseDatabase: AngularFireDatabase,
     private authService: AuthService,
@@ -29,15 +32,19 @@ export class BudgetService {
     );
   }
 
-  updateBudgetForCurrentUser(boardId: string, budget: any): Promise<any> {
+  createBudgetForCurrentUser(boardId: string): Promise<any> {
+    return this.updateBudgetForCurrentUser(boardId, {min: this.DEFAULT_BUDGET_MIN, max: this.DEFAULT_BUDGET_MAX});
+  }
+
+  updateBudget(boardId: string, collaborator: string, budget: any): Promise<any> {
     return Promise.resolve(
-      this.authService.getUser()
-        .then(user => {
-          return this.firebaseDatabase
-            .object(`boards/${boardId}/collaborators/${this.fbUtilsService.sanitizeKey(user.email)}/budget`)
-            .update(budget);
-        })
-    );
+      this.firebaseDatabase
+      .object(`boards/${boardId}/collaborators/${this.fbUtilsService.sanitizeKey(collaborator)}/budget`)
+      .update(budget));
+  }
+
+  updateBudgetForCurrentUser(boardId: string, budget: any): Promise<any> {
+    return this.authService.getUser().then(user => this.updateBudget(boardId, user.email, budget));
   }
 
   getBudgetObservable(boardId: string, collaborator: string): Promise<any> {
