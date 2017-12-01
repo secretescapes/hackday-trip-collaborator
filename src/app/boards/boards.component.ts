@@ -25,7 +25,9 @@ export class BoardsComponent implements OnInit {
     });
 
     this.boardService.getBoardsForCurrentUser().then(boards => {
-      Object.keys(boards).map(key => this.boardService.getName(key).then(name => this.boards.push({name: name, boardId: key})));
+      if (boards) {
+        Object.keys(boards).map(key => this.boardService.getName(key).then(name => this.boards.push({name: name, boardId: key})));
+      }
     });
   }
 
