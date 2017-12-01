@@ -7,6 +7,8 @@ import 'rxjs/add/operator/take';
 @Injectable()
 export class BoardService {
 
+  DEFAULT_BOARD_NAME = 'New Board';
+
   constructor(
     private firebaseDatabase: AngularFireDatabase,
     private authService: AuthService
@@ -15,16 +17,27 @@ export class BoardService {
   createBoard(): Promise<string> {
     return Promise.resolve(this.authService.getUser())
       .then(user => {
+        // Create the board
         return {key: this.firebaseDatabase.list(`boards`).push({created: Date.now()}).key, user: user};
       })
       .then(response => {
+        // Create the collaborators list on new board
         this.firebaseDatabase.list(`boards/${response.key}/collaborators`)
           .push({email: response.user.email, admin: true});
-        return response.key;
+        return response;
       })
-      .then(key => {
-        this.firebaseDatabase.object(`boards/${key}`).update({name: 'New Board'});
-        return key;
+      .then(response => {
+        // Set name to new board
+        this.firebaseDatabase.object(`boards/${response.key}`).update({name: this.DEFAULT_BOARD_NAME});
+        return response;
+      }).then(response => {
+        // Update index of boards for user
+        this.firebaseDatabase.list(`users/${response.user.uid}/boards`)
+          .push({
+            boardId: response.key,
+            name: this.DEFAULT_BOARD_NAME,
+            admin: true});
+        return response.key;
       });
   }
 
