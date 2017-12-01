@@ -11,6 +11,10 @@ import {ActivatedRoute} from '@angular/router';
 export class BudgetComponent implements OnInit {
 
   budget: Observable<any>;
+  editMode = false;
+  newMin: number;
+  newMax: number;
+
   private boardId: string;
 
   constructor(
@@ -24,6 +28,22 @@ export class BudgetComponent implements OnInit {
         this.boardId = params.id;
         this.boardService.getBudgetObservableForCurrentUser(this.boardId).then(budget => this.budget = budget);
       }
+    });
+  }
+
+  switchEditMode() {
+   this.editMode = !this.editMode;
+   if (this.editMode) {
+    this.boardService.getBudgetForCurrentUser(this.boardId).then(budget => {
+      this.newMin = budget.min;
+      this.newMax = budget.max;
+    });
+   }
+  }
+
+  updateBudget() {
+    this.boardService.updateBudgetForCurrentUser(this.boardId, {min: this.newMin, max: this.newMax}).then(() => {
+      this.editMode = false;
     });
   }
 
