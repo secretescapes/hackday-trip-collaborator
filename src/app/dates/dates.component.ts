@@ -13,7 +13,7 @@ export class DatesComponent implements OnInit {
   newFrom: string;
   newTo: string;
   errorMsg: string;
-  dates: Observable<any>;
+  dates: Observable<any[]>;
 
   private boardId: string;
 

@@ -29,7 +29,7 @@ export class CollaboratorsComponent implements OnInit {
     this.route.params.subscribe((params: any) => {
       if (params.id) {
         this.boardId = params.id;
-        this.collaboratorsService.getCollaborators(this.boardId)
+        this.collaboratorsService.getCollaboratorsObservable(this.boardId)
           .then(collaborators => this.collaborators = collaborators);
       }
     });

@@ -9,6 +9,13 @@
           <li>Max: {{collaborator.budget?.max}}</li>
         </ul>
       </li>
+      <li *ngIf="collaborator.dates">Dates:
+        <ul>
+          <li *ngFor="let datesPair of collaborator.dates | objectToArray">
+            From: {{datesPair.from | date:'shortDate'}} To: {{datesPair.to | date:'shortDate'}}
+          </li>
+        </ul>
+      </li>
     </ul>
   </li>
 </ul>

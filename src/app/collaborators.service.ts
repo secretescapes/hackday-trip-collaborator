@@ -13,7 +13,7 @@ export class CollaboratorsService {
     private budgetService: BudgetService
   ) { }
 
-  getCollaborators(boardId: string): Promise<Observable<any>> {
+  getCollaboratorsObservable(boardId: string): Promise<Observable<any>> {
     return Promise.resolve(this.firebaseDatabase.list(`boards/${boardId}/collaborators`).valueChanges());
   }
 

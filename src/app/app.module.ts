@@ -28,6 +28,7 @@ import {BudgetService} from './budget.service';
 import {CollaboratorsService} from './collaborators.service';
 import { DatesComponent } from './dates/dates.component';
 import {DatesService} from './dates.service';
+import { ObjectToArrayPipe } from './object-to-array.pipe';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import {DatesService} from './dates.service';
     CollaboratorsComponent,
     BoardNameComponent,
     BudgetComponent,
-    DatesComponent
+    DatesComponent,
+    ObjectToArrayPipe
   ],
   imports: [
     BrowserModule,
