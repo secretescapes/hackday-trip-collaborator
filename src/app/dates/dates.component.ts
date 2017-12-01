@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {DatesService} from '../dates.service';
 import {ActivatedRoute} from '@angular/router';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-dates',
@@ -12,6 +13,7 @@ export class DatesComponent implements OnInit {
   newFrom: string;
   newTo: string;
   errorMsg: string;
+  dates: Observable<any>;
 
   private boardId: string;
 
@@ -24,6 +26,7 @@ export class DatesComponent implements OnInit {
     this.route.params.subscribe((params: any) => {
       if (params.id) {
         this.boardId = params.id;
+        this.datesService.getDatesObservablesForCurrentUser(this.boardId).then(dates => this.dates = dates);
       }
     });
   }

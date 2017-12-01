@@ -1,4 +1,9 @@
 <h2>My Dates</h2>
+<ul>
+  <li *ngFor="let datesPair of dates | async">
+    From: {{datesPair.from | date:'shortDate'}} To: {{datesPair.to | date:'shortDate'}}
+  </li>
+</ul>
 <div>
   <input [(ngModel)]="newFrom" type="date">
   <input [(ngModel)]="newTo" type="date">
