@@ -10,14 +10,14 @@ export class WizardComponent implements OnInit {
 
   private boardId: string;
 
-  steps = [
+  STEPS = [
     'name',
-    'budget'
+    'budget',
+    'dates',
+    'collaborators'
   ];
 
   currentStep = 0;
-
-  test: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -26,7 +26,7 @@ export class WizardComponent implements OnInit {
 
   ngOnInit() {
     this.setBoardIdFromParams();
-    this.currentStep = this.steps.indexOf(this.route.children[0].snapshot.url[0].path);
+    this.currentStep = this.STEPS.indexOf(this.route.children[0].snapshot.url[0].path);
     if (this.currentStep > -1) {
       this.goToCurrentPage();
     } else {
@@ -39,22 +39,33 @@ export class WizardComponent implements OnInit {
   }
 
   nextStep() {
-    if (this.currentStep < (this.steps.length - 1)) {
+    if (!this.isLastStep()) {
       this.currentStep ++;
       this.goToCurrentPage();
     }
   }
 
-
   previousStep() {
-    if (this.currentStep > 0) {
+    if (!this.isFirstStep()) {
       this.currentStep --;
       this.goToCurrentPage();
     }
   }
 
+  isFirstStep() {
+    return this.currentStep === 0;
+  }
+
+  isLastStep() {
+    return this.currentStep === (this.STEPS.length - 1);
+  }
+
+  onFinishWizard() {
+    this.router.navigate([`/app/board/${this.boardId}`]);
+  }
+
   private goToCurrentPage() {
-    this.router.navigate([`/app/board/${this.boardId}/wizard/${this.steps[this.currentStep]}`]);
+    this.router.navigate([`/app/board/${this.boardId}/wizard/${this.STEPS[this.currentStep]}`]);
   }
 
 }

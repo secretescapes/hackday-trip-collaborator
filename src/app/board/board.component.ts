@@ -24,7 +24,7 @@ export class BoardComponent implements OnInit {
         this.boardService.getBoardObservable(params.id).then(board => this.board = board);
       } else {
         this.boardService.createBoard().then(key => {
-          this.router.navigate([`/app/board/${key}`]);
+          this.router.navigate([`/app/board/${key}/wizard/name`]);
         });
       }
     });

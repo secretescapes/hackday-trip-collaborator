@@ -26,13 +26,21 @@ export class CollaboratorsComponent implements OnInit {
       'email': new FormControl('', [Validators.required, Validators.email])
     });
 
-    this.route.params.subscribe((params: any) => {
-      if (params.id) {
-        this.boardId = params.id;
-        this.collaboratorsService.getCollaboratorsObservable(this.boardId)
-          .then(collaborators => this.collaborators = collaborators);
-      }
-    });
+    this.setBoardIdFromParams();
+  }
+
+  private setBoardIdFromParams() {
+    this.route.params.subscribe((params: any) => params.id ? this.onBoardId(params.id) : this.setBoardIdFromParentParams());
+  }
+
+  private setBoardIdFromParentParams() {
+    this.route.parent.params.subscribe((params: any) => params.id ? this.onBoardId(params.id) : null);
+  }
+
+  private onBoardId(boardId: string) {
+    this.boardId = boardId;
+    this.collaboratorsService.getCollaboratorsObservable(this.boardId)
+      .then(collaborators => this.collaborators = collaborators);
   }
 
   onAddCollaborator() {

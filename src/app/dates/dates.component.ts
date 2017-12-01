@@ -23,12 +23,20 @@ export class DatesComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.params.subscribe((params: any) => {
-      if (params.id) {
-        this.boardId = params.id;
-        this.datesService.getDatesObservablesForCurrentUser(this.boardId).then(dates => this.dates = dates);
-      }
-    });
+    this.setBoardIdFromParams();
+  }
+
+  private setBoardIdFromParams() {
+    this.route.params.subscribe((params: any) => params.id ? this.onBoardId(params.id) : this.setBoardIdFromParentParams());
+  }
+
+  private setBoardIdFromParentParams() {
+    this.route.parent.params.subscribe((params: any) => params.id ? this.onBoardId(params.id) : null);
+  }
+
+  private onBoardId(boardId: string) {
+    this.boardId = boardId;
+    this.datesService.getDatesObservablesForCurrentUser(this.boardId).then(dates => this.dates = dates);
   }
 
   addNewDates() {
