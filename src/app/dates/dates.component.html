@@ -1,0 +1,7 @@
+<h2>My Dates</h2>
+<div>
+  <input [(ngModel)]="newFrom" type="date">
+  <input [(ngModel)]="newTo" type="date">
+  <button (click)="addNewDates()">Add New</button>
+  <span *ngIf="errorMsg">{{errorMsg}}</span>
+</div>

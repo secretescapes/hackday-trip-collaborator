@@ -26,6 +26,8 @@ import {FirebaseUtilsService} from 'app/firebase-utils.service';
 import {BoardNameService} from './board-name.service';
 import {BudgetService} from './budget.service';
 import {CollaboratorsService} from './collaborators.service';
+import { DatesComponent } from './dates/dates.component';
+import {DatesService} from './dates.service';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,8 @@ import {CollaboratorsService} from './collaborators.service';
     BoardComponent,
     CollaboratorsComponent,
     BoardNameComponent,
-    BudgetComponent
+    BudgetComponent,
+    DatesComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +61,8 @@ import {CollaboratorsService} from './collaborators.service';
     FirebaseUtilsService,
     BoardNameService,
     BudgetService,
-    CollaboratorsService
+    CollaboratorsService,
+    DatesService
   ],
   bootstrap: [AppComponent]
 })
