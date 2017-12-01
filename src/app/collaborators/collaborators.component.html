@@ -2,6 +2,14 @@
 <ul>
   <li *ngFor="let collaborator of collaborators | async">
     {{ collaborator.email }}
+    <ul>
+      <li>Budget:
+        <ul>
+          <li>Min: {{collaborator.budget.min}}</li>
+          <li>Max: {{collaborator.budget.max}}</li>
+        </ul>
+      </li>
+    </ul>
   </li>
 </ul>
 <form [formGroup]="form" (ngSubmit)="onAddCollaborator()">
