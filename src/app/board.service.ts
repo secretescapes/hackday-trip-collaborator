@@ -3,15 +3,19 @@ import {AngularFireDatabase} from 'angularfire2/database';
 import {AuthService} from './auth.service';
 import {Observable} from 'rxjs';
 import 'rxjs/add/operator/take';
+import {FirebaseUtilsService} from './firebase-utils.service';
 
 @Injectable()
 export class BoardService {
 
   DEFAULT_BOARD_NAME = 'New Board';
+  DEFAULT_BUDGET_MIN = '100';
+  DEFAULT_BUDGET_MAX = '1000';
 
   constructor(
     private firebaseDatabase: AngularFireDatabase,
-    private authService: AuthService
+    private authService: AuthService,
+    private fbUtilsService: FirebaseUtilsService
   ) { }
 
   createBoard(): Promise<string> {
@@ -22,8 +26,7 @@ export class BoardService {
       })
       .then(response => {
         // Create the collaborators list on new board
-        this.firebaseDatabase.list(`boards/${response.key}/collaborators`)
-          .push({email: response.user.email, admin: true});
+        this.addCollaboratorToBoard(response.key, response.user.email, true);
         return response;
       })
       .then(response => {
@@ -42,8 +45,6 @@ export class BoardService {
       .then(user => {
         return this.firebaseDatabase.database.ref(`users/${user.uid}/boards`).once('value').then(snapshot => snapshot.val());
       }));
-    // return Promise.resolve(this.authService.getUser()
-    //   .then(user => this.firebaseDatabase.list(`users/${user.uid}/boards`).valueChanges()));
 }
 
   updateName(boardId: string, newName: string): Promise<void> {
@@ -58,6 +59,10 @@ export class BoardService {
     return Promise.resolve(this.firebaseDatabase.database.ref(`boards/${boardId}/name`).once('value').then(snapshot => snapshot.val()));
   }
 
+  // getBudgetObservable(boardId: string, collaborator: string): Promise<any> {
+    // return Promise.resolve(this.);
+  // }
+
   getBoardObservable(boardId: string): Promise<Observable<any>> {
     return Promise.resolve(this.firebaseDatabase.object(`boards/${boardId}`).valueChanges());
   }
@@ -66,21 +71,23 @@ export class BoardService {
     return Promise.resolve(this.firebaseDatabase.list(`boards/${boardId}/collaborators`).valueChanges());
   }
 
-  addCollaboratorToBoard(boardId: string, collaborator: string): Promise<string> {
-    return Promise.resolve(this.firebaseDatabase.list(`boards/${boardId}/collaborators`).push({
+  addCollaboratorToBoard(boardId: string, collaborator: string, isAdmin: boolean): Promise<void> {
+    return Promise.resolve(
+      this.firebaseDatabase
+        .object(`boards/${boardId}/collaborators/${this.fbUtilsService.sanitizeKey(collaborator)}`)
+        .set({
           email: collaborator,
-          admin: false
-        }).key);
+          admin: isAdmin,
+          budget: {
+            min: this.DEFAULT_BUDGET_MIN,
+            max: this.DEFAULT_BUDGET_MAX
+          }
+        }));
   }
 
   isCollaboratorAllowedToBoard(boardId: string, collaborator: string): Promise<boolean> {
     return Promise.resolve(
-    this.firebaseDatabase.database.ref(`boards/${boardId}/collaborators`)
-      .orderByChild('email')
-      .equalTo(collaborator)
-      .once('value')
-      .then(snapshot => {
-        return snapshot.val() !== null;
-      }));
+      this.firebaseDatabase
+        .object(`boards/${boardId}/collaborators/${this.fbUtilsService.sanitizeKey(collaborator)}`) !== null );
   }
 }

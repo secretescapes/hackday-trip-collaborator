@@ -21,6 +21,8 @@ import {AngularFireDatabaseModule} from 'angularfire2/database';
 import { CollaboratorsComponent } from './collaborators/collaborators.component';
 import {BoardGuardService} from './board-guard.service';
 import { BoardNameComponent } from './board-name/board-name.component';
+import { BudgetComponent } from './budget/budget.component';
+import {FirebaseUtilsService} from 'app/firebase-utils.service';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,8 @@ import { BoardNameComponent } from './board-name/board-name.component';
     LogoutComponent,
     BoardComponent,
     CollaboratorsComponent,
-    BoardNameComponent
+    BoardNameComponent,
+    BudgetComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +51,8 @@ import { BoardNameComponent } from './board-name/board-name.component';
   providers: [
     AuthService,
     BoardGuardService,
-    BoardService
+    BoardService,
+    FirebaseUtilsService
   ],
   bootstrap: [AppComponent]
 })
