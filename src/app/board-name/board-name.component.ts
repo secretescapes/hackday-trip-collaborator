@@ -21,12 +21,20 @@ export class BoardNameComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.params.subscribe((params: any) => {
-      if (params.id) {
-        this.boardId = params.id;
-        this.boardNameService.getNameObservable(this.boardId).then(name => this.name = name);
-      }
-    });
+    this.setBoardIdFromParams();
+  }
+
+  private setBoardIdFromParams() {
+    this.route.params.subscribe((params: any) => params.id ? this.onBoardId(params.id) : this.setBoardIdFromParentParams());
+  }
+
+  private setBoardIdFromParentParams() {
+    this.route.parent.params.subscribe((params: any) => params.id ? this.onBoardId(params.id) : null);
+  }
+
+  private onBoardId(boardId: string) {
+    this.boardId = boardId;
+    this.boardNameService.getNameObservable(this.boardId).then(name => this.name = name);
   }
 
   switchEditMode() {

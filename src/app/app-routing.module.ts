@@ -10,6 +10,8 @@ import {AuthGuardService} from './auth-guard.service';
 import {BoardComponent} from './board/board.component';
 import {CollaboratorsComponent} from './collaborators/collaborators.component';
 import {BoardGuardService} from './board-guard.service';
+import {WizardComponent} from './wizard/wizard.component';
+import {BoardNameComponent} from './board-name/board-name.component';
 const routes: Routes = [
   { path: '', redirectTo: '/app/boards', pathMatch: 'full' },
   {path: 'auth', component: AuthComponent, children: [
@@ -21,7 +23,10 @@ const routes: Routes = [
     { path: 'boards', component: BoardsComponent, canActivate: [AuthGuardService] },
     { path: 'board/:id', component: BoardComponent, canActivate: [AuthGuardService, BoardGuardService] },
     { path: 'board/:id/collaborators', component: CollaboratorsComponent, canActivate: [AuthGuardService, BoardGuardService] },
-    { path: 'board', component: BoardComponent, canActivate: [AuthGuardService] }
+    { path: 'board', component: BoardComponent, canActivate: [AuthGuardService] },
+    { path: 'board/:id/wizard', component: WizardComponent, children: [
+      {path: 'name', component: BoardNameComponent}
+    ]}
   ]}
 ];
 @NgModule({
