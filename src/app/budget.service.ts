@@ -6,7 +6,6 @@ import {AngularFireDatabase} from 'angularfire2/database';
 @Injectable()
 export class BudgetService {
 
-  DEFAULT_BUDGET_MIN = '100';
   DEFAULT_BUDGET_MAX = '1000';
 
   constructor(
@@ -33,7 +32,7 @@ export class BudgetService {
   }
 
   createBudget(boardId: string, collaborator: string): Promise<any> {
-    return this.updateBudget(boardId, collaborator, {min: this.DEFAULT_BUDGET_MIN, max: this.DEFAULT_BUDGET_MAX});
+    return this.updateBudget(boardId, collaborator, {max: this.DEFAULT_BUDGET_MAX});
   }
 
   updateBudget(boardId: string, collaborator: string, budget: any): Promise<any> {

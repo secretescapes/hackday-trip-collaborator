@@ -1,11 +1,9 @@
 <h2>My Budget</h2>
 <button (click)="switchEditMode()">Change</button>
 <span *ngIf="!editMode">
-  <p>Min: {{(budget| async)?.min | currency:'GBP':'symbol'}}</p>
   <p>Max: {{(budget| async)?.max | currency:'GBP':'symbol'}}</p>
 </span>
 <span *ngIf="editMode">
-  <p>Min: <input type="number" [(ngModel)]="newMin"></p>
   <p>Max: <input type="number" [(ngModel)]="newMax"></p>
   <button (click)="updateBudget()">Save</button>
   <button (click)="switchEditMode()">Cancel</button>

@@ -12,7 +12,6 @@ export class BudgetComponent implements OnInit {
 
   budget: Observable<any>;
   editMode = false;
-  newMin: number;
   newMax: number;
 
   private boardId: string;
@@ -35,14 +34,13 @@ export class BudgetComponent implements OnInit {
    this.editMode = !this.editMode;
    if (this.editMode) {
     this.budgetService.getBudgetForCurrentUser(this.boardId).then(budget => {
-      this.newMin = budget.min;
       this.newMax = budget.max;
     });
    }
   }
 
   updateBudget() {
-    this.budgetService.updateBudgetForCurrentUser(this.boardId, {min: this.newMin, max: this.newMax}).then(() => {
+    this.budgetService.updateBudgetForCurrentUser(this.boardId, {max: this.newMax}).then(() => {
       this.editMode = false;
     });
   }
