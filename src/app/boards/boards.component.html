@@ -1,7 +1,7 @@
 <p>
   Boards for {{user?.email}}
 </p>
-<a [routerLink]="['/app/board']">New</a>
+<a [routerLink]="['/app/board']" skipLocationChange>New</a>
 <ul>
   <li *ngFor="let board of boards">
     <a [routerLink]="['/app/board', board.boardId]">{{board.name}}</a>
