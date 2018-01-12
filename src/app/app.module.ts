@@ -30,6 +30,7 @@ import { DatesComponent } from './dates/dates.component';
 import {DatesService} from './dates.service';
 import { ObjectToArrayPipe } from './object-to-array.pipe';
 import { WizardComponent } from './wizard/wizard.component';
+import { NameAndCollaboratorsComponent } from './name-and-collaborators/name-and-collaborators.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { WizardComponent } from './wizard/wizard.component';
     BudgetComponent,
     DatesComponent,
     ObjectToArrayPipe,
-    WizardComponent
+    WizardComponent,
+    NameAndCollaboratorsComponent
   ],
   imports: [
     BrowserModule,

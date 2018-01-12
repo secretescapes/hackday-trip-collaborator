@@ -1,7 +1,7 @@
 <p>
   Holiday Planner
 </p>
+<router-outlet></router-outlet>
 <button *ngIf="!isFirstStep()" (click)="previousStep()">&lt; Back</button>
 <button *ngIf="!isLastStep()" (click)="nextStep()">Next &gt;</button>
 <button *ngIf="isLastStep()" (click)="onFinishWizard()">View Board</button>
-<router-outlet></router-outlet>
