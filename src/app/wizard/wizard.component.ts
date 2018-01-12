@@ -11,12 +11,10 @@ export class WizardComponent implements OnInit {
   private boardId: string;
 
   STEPS = [
-    'name',
+    'name-and-collaborators',
     'destination',
     'activities',
-    'budget',
-    'dates',
-    'collaborators'
+    'months'
   ];
 
   currentStep = 0;

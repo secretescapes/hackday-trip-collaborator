@@ -6,6 +6,7 @@ import 'rxjs/add/operator/take';
 import {CollaboratorsService} from './collaborators.service';
 import {DestinationService} from './destination.service';
 import {ActivitiesService} from './activities.service';
+import {MonthsService} from './months.service';
 
 @Injectable()
 export class BoardService {
@@ -17,6 +18,7 @@ export class BoardService {
     private authService: AuthService,
     private destinationService: DestinationService,
     private activitiesService: ActivitiesService,
+    private monthsService: MonthsService,
     private collaboratorsService: CollaboratorsService
   ) { }
 
@@ -44,6 +46,11 @@ export class BoardService {
       .then(response => {
         // Set activities
         this.activitiesService.initialiseActivitiesForBoard(response.key);
+        return response;
+      })
+      .then(response => {
+        // Set Months
+        this.monthsService.initialiseMonthsForBoard(response.key);
         return response;
       })
       .then(response => {

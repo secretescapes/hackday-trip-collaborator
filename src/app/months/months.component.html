@@ -1,0 +1,10 @@
+<p>
+  When would you like to do?
+  (select as many as you want)
+</p>
+<ul>
+  <li *ngFor="let month of months | async">
+    <input id="choice-{{month.name}}" (change)="updateMonth(month.name, month.active)" [checked]="month.active" type="checkbox" value="{{month.name}}">
+    <label for="choice-{{month.name}}">{{month.label}}</label>
+  </li>
+</ul>

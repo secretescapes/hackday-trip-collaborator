@@ -35,6 +35,8 @@ import { DestinationComponent } from './destination/destination.component';
 import {DestinationService} from './destination.service';
 import { ActivitiesComponent } from './activities/activities.component';
 import {ActivitiesService} from './activities.service';
+import { MonthsComponent } from './months/months.component';
+import {MonthsService} from './months.service';
 
 @NgModule({
   declarations: [
@@ -54,7 +56,8 @@ import {ActivitiesService} from './activities.service';
     WizardComponent,
     NameAndCollaboratorsComponent,
     DestinationComponent,
-    ActivitiesComponent
+    ActivitiesComponent,
+    MonthsComponent
   ],
   imports: [
     BrowserModule,
@@ -76,7 +79,8 @@ import {ActivitiesService} from './activities.service';
     CollaboratorsService,
     DatesService,
     DestinationService,
-    ActivitiesService
+    ActivitiesService,
+    MonthsService
   ],
   bootstrap: [AppComponent]
 })
