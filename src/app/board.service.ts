@@ -5,6 +5,7 @@ import {Observable} from 'rxjs';
 import 'rxjs/add/operator/take';
 import {CollaboratorsService} from './collaborators.service';
 import {DestinationService} from './destination.service';
+import {ActivitiesService} from './activities.service';
 
 @Injectable()
 export class BoardService {
@@ -15,6 +16,7 @@ export class BoardService {
     private firebaseDatabase: AngularFireDatabase,
     private authService: AuthService,
     private destinationService: DestinationService,
+    private activitiesService: ActivitiesService,
     private collaboratorsService: CollaboratorsService
   ) { }
 
@@ -37,6 +39,11 @@ export class BoardService {
       .then(response => {
         // Set destinations
         this.destinationService.initialiseDestinationsForBoard(response.key);
+        return response;
+      })
+      .then(response => {
+        // Set activities
+        this.activitiesService.initialiseActivitiesForBoard(response.key);
         return response;
       })
       .then(response => {

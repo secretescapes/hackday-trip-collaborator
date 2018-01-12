@@ -15,6 +15,7 @@ import {BudgetComponent} from './budget/budget.component';
 import {DatesComponent} from 'app/dates/dates.component';
 import {NameAndCollaboratorsComponent} from './name-and-collaborators/name-and-collaborators.component';
 import {DestinationComponent} from 'app/destination/destination.component';
+import {ActivitiesComponent} from 'app/activities/activities.component';
 const routes: Routes = [
   { path: '', redirectTo: '/app/boards', pathMatch: 'full' },
   {path: 'auth', component: AuthComponent, children: [
@@ -30,6 +31,7 @@ const routes: Routes = [
     { path: 'board/:id/wizard', component: WizardComponent, canActivate: [AuthGuardService, BoardGuardService], children: [
       {path: 'name', component: NameAndCollaboratorsComponent},
       {path: 'destination', component: DestinationComponent},
+      {path: 'activities', component: ActivitiesComponent},
       {path: 'budget', component: BudgetComponent},
       {path: 'dates', component: DatesComponent},
       {path: 'collaborators', component: CollaboratorsComponent}

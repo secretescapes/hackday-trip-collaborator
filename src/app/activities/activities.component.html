@@ -1,0 +1,10 @@
+<p>
+  What would you like to do?
+  (select as many as you want)
+</p>
+<ul>
+  <li *ngFor="let activity of activities | async">
+    <input id="choice-{{activity.name}}" (change)="updateActivity(activity.name, activity.active)" [checked]="activity.active" type="checkbox" value="{{activity.name}}">
+    <label for="choice-{{activity.name}}">{{activity.label}}</label>
+  </li>
+</ul>
