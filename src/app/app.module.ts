@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import {HttpModule, JsonpModule} from '@angular/http';
 
 import { AppComponent } from './app.component';
 import {AngularFireModule} from 'angularfire2';
@@ -37,6 +37,9 @@ import { ActivitiesComponent } from './activities/activities.component';
 import {ActivitiesService} from './activities.service';
 import { MonthsComponent } from './months/months.component';
 import {MonthsService} from './months.service';
+import { AllSalesComponent } from './all-sales/all-sales.component';
+import {SalesService} from './sales.service';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -57,7 +60,8 @@ import {MonthsService} from './months.service';
     NameAndCollaboratorsComponent,
     DestinationComponent,
     ActivitiesComponent,
-    MonthsComponent
+    MonthsComponent,
+    AllSalesComponent
   ],
   imports: [
     BrowserModule,
@@ -67,6 +71,7 @@ import {MonthsService} from './months.service';
     ReactiveFormsModule,
     AngularFireAuthModule,
     AngularFireDatabaseModule,
+    HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase)
   ],
   providers: [
@@ -80,7 +85,8 @@ import {MonthsService} from './months.service';
     DatesService,
     DestinationService,
     ActivitiesService,
-    MonthsService
+    MonthsService,
+    SalesService
   ],
   bootstrap: [AppComponent]
 })

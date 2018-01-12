@@ -17,6 +17,7 @@ import {NameAndCollaboratorsComponent} from './name-and-collaborators/name-and-c
 import {DestinationComponent} from 'app/destination/destination.component';
 import {ActivitiesComponent} from 'app/activities/activities.component';
 import {MonthsComponent} from './months/months.component';
+import {AllSalesComponent} from 'app/all-sales/all-sales.component';
 const routes: Routes = [
   { path: '', redirectTo: '/app/boards', pathMatch: 'full' },
   {path: 'auth', component: AuthComponent, children: [
@@ -29,6 +30,7 @@ const routes: Routes = [
     { path: 'board/:id', component: BoardComponent, canActivate: [AuthGuardService, BoardGuardService] },
     { path: 'board/:id/collaborators', component: CollaboratorsComponent, canActivate: [AuthGuardService, BoardGuardService] },
     { path: 'board', component: BoardComponent, canActivate: [AuthGuardService] },
+    { path: 'allSales', component: AllSalesComponent, canActivate: [AuthGuardService] },
     { path: 'board/:id/wizard', component: WizardComponent, canActivate: [AuthGuardService, BoardGuardService], children: [
       {path: 'name-and-collaborators', component: NameAndCollaboratorsComponent},
       {path: 'destination', component: DestinationComponent},
