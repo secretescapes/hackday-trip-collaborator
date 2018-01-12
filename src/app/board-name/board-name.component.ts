@@ -11,9 +11,8 @@ import {BoardNameService} from '../board-name.service';
 export class BoardNameComponent implements OnInit {
 
   private boardId: string;
-  name: Observable<string>;
-  editMode = false;
-  newName: string;
+  name: string;
+  saving = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -34,21 +33,13 @@ export class BoardNameComponent implements OnInit {
 
   private onBoardId(boardId: string) {
     this.boardId = boardId;
-    this.boardNameService.getNameObservable(this.boardId).then(name => this.name = name);
-  }
-
-  switchEditMode() {
-    this.editMode = !this.editMode;
-    if (this.editMode) {
-      this.boardNameService.getName(this.boardId).then(name => {
-        this.newName = name;
-      });
-    }
+    this.boardNameService.getName(this.boardId).then(name => this.name = name);
   }
 
   updateName() {
-    this.boardNameService.updateName(this.boardId, this.newName).then(() => {
-      this.editMode = false;
+    this.saving = true;
+    this.boardNameService.updateName(this.boardId, this.name).then(() => {
+      this.saving = false;
     });
   }
 

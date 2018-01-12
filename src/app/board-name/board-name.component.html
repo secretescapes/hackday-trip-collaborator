@@ -1,13 +1,6 @@
-<h2>Board Name</h2>
 <p>
-  <span *ngIf="!editMode">
-    {{name | async}}
-    <button (click)="switchEditMode()">Change</button>
+  <span>
+    <input [(ngModel)]="name" (blur)="updateName()" type="text"/>
   </span>
-
-  <span *ngIf="editMode">
-    <input [(ngModel)]="newName" type="text"/>
-    <button (click)="updateName()">Save</button>
-    <button (click)="switchEditMode()">Close</button>
-  </span>
+  <span *ngIf="saving">Saving...</span>
 </p>

@@ -28,7 +28,7 @@ export class BoardService {
         return response;
       })
       .then(response => {
-        // Set name to new board
+        // Set nameObservable to new board
         this.firebaseDatabase.object(`boards/${response.key}`).update({name: this.DEFAULT_BOARD_NAME});
         return response;
       }).then(response => {
