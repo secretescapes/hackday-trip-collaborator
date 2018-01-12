@@ -31,6 +31,8 @@ import {DatesService} from './dates.service';
 import { ObjectToArrayPipe } from './object-to-array.pipe';
 import { WizardComponent } from './wizard/wizard.component';
 import { NameAndCollaboratorsComponent } from './name-and-collaborators/name-and-collaborators.component';
+import { DestinationComponent } from './destination/destination.component';
+import {DestinationService} from './destination.service';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,8 @@ import { NameAndCollaboratorsComponent } from './name-and-collaborators/name-and
     DatesComponent,
     ObjectToArrayPipe,
     WizardComponent,
-    NameAndCollaboratorsComponent
+    NameAndCollaboratorsComponent,
+    DestinationComponent
   ],
   imports: [
     BrowserModule,
@@ -68,7 +71,8 @@ import { NameAndCollaboratorsComponent } from './name-and-collaborators/name-and
     BoardNameService,
     BudgetService,
     CollaboratorsService,
-    DatesService
+    DatesService,
+    DestinationService
   ],
   bootstrap: [AppComponent]
 })

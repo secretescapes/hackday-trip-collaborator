@@ -4,6 +4,7 @@ import {AuthService} from './auth.service';
 import {Observable} from 'rxjs';
 import 'rxjs/add/operator/take';
 import {CollaboratorsService} from './collaborators.service';
+import {DestinationService} from './destination.service';
 
 @Injectable()
 export class BoardService {
@@ -13,6 +14,7 @@ export class BoardService {
   constructor(
     private firebaseDatabase: AngularFireDatabase,
     private authService: AuthService,
+    private destinationService: DestinationService,
     private collaboratorsService: CollaboratorsService
   ) { }
 
@@ -31,7 +33,13 @@ export class BoardService {
         // Set nameObservable to new board
         this.firebaseDatabase.object(`boards/${response.key}`).update({name: this.DEFAULT_BOARD_NAME});
         return response;
-      }).then(response => {
+      })
+      .then(response => {
+        // Set destinations
+        this.destinationService.initialiseDestinationsForBoard(response.key);
+        return response;
+      })
+      .then(response => {
         // Update index of boards for user
         this.firebaseDatabase.object(`users/${response.user.uid}/boards/${response.key}`).set(true);
         return response.key;

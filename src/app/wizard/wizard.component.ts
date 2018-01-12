@@ -12,6 +12,7 @@ export class WizardComponent implements OnInit {
 
   STEPS = [
     'name',
+    'destination',
     'budget',
     'dates',
     'collaborators'

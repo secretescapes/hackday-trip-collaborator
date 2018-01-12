@@ -1,0 +1,9 @@
+<p>
+  Where would you like to go? (select as many as you want)
+</p>
+<ul>
+  <li *ngFor="let destination of destinations | async">
+    <input id="choice-{{destination.name}}" (change)="updateDestination(destination.name, destination.active)" [checked]="destination.active" type="checkbox" value="{{destination.name}}">
+    <label for="choice-{{destination.name}}">{{destination.label}}</label>
+  </li>
+</ul>
