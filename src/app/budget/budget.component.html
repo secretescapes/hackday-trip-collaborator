@@ -1,4 +1,7 @@
-<h2>My Budget</h2>
+<span class="block hfind-main-title text-center margin-top-90">
+	What is your Budget?
+</span>
+
 <button (click)="switchEditMode()">Change</button>
 <span *ngIf="!editMode">
   <p>Max: {{(budget| async)?.max | currency:'GBP':'symbol'}}</p>

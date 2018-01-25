@@ -1,7 +1,7 @@
-<p>
-  Holiday Planner
-</p>
+<div class="hfind-welcome__title">
+
+</div>
 <router-outlet></router-outlet>
-<button *ngIf="!isFirstStep()" (click)="previousStep()">&lt; Back</button>
-<button *ngIf="!isLastStep()" (click)="nextStep()">Next &gt;</button>
+<button *ngIf="!isFirstStep()" (click)="previousStep()" class="hfind-back-button">&lt; Back</button>
+<button *ngIf="!isLastStep()" (click)="nextStep()" class="primary-btn button button--full button--fixed">Next</button>
 <button *ngIf="isLastStep()" (click)="onFinishWizard()">View Board</button>

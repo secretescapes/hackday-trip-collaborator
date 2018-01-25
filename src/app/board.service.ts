@@ -11,7 +11,7 @@ import {MonthsService} from './months.service';
 @Injectable()
 export class BoardService {
 
-  DEFAULT_BOARD_NAME = 'New Board';
+  DEFAULT_BOARD_NAME = '+ New Board';
 
   constructor(
     private firebaseDatabase: AngularFireDatabase,
