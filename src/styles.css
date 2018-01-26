@@ -58,10 +58,11 @@ body {
 }
 
 .hfind-select-block {
-	height: 100px;
-	width: 100px;
-	margin: 20px;
+	height: 150px;
+	width: 150px;
+	margin: 18px;
 	background: #c1c1c1;
+	position: relative;
 }
 
 .hfind-back-button {
@@ -81,4 +82,24 @@ body {
 
 .margin-top-90 {
 	margin-top: 90px;
+}
+
+.hfind-select-item {
+	text-align: center;
+	left: 0;
+	right: 0;
+	position: absolute;
+	background: red;
+	box-sizing: border-box;
+	height: 100%;
+	padding-top: 30px;
+	color: white;
+}
+
+.padding-15 {
+	padding: 15px;
+}
+
+.padding-0 {
+	padding: 0;
 }

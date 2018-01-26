@@ -5,9 +5,9 @@
   (select as many as you want)
 </span>
 
-<ul>
+<ul class="padding-0">
   <li *ngFor="let activity of activities | async" class="inline-block hfind-select-block">
     <input id="choice-{{activity.name}}" (change)="updateActivity(activity.name, activity.active)" [checked]="activity.active" type="checkbox" value="{{activity.name}}">
-    <label for="choice-{{activity.name}}">{{activity.label}}</label>
+    <label for="choice-{{activity.name}}" class="hfind-select-item">{{activity.label}}</label>
   </li>
 </ul>

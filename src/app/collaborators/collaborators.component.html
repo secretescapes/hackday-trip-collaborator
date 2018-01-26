@@ -3,6 +3,7 @@
     {{ collaborator.email }}
   </li>
 </ul>
+
 <form [formGroup]="form" (ngSubmit)="onAddCollaborator()" class="hfind-collab-fields">
   <input type="email" formControlName="email" class="hfind-collab-fields-input" placeholder="Enter email address"/>
   <button type="submit" [disabled]="!form.valid" class="hfind-collab-fields-cta">+ Invite people to contribute</button>

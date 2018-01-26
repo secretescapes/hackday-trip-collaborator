@@ -1,9 +1,13 @@
-<p>
-  Boards for {{user?.email}}
-</p>
-<a [routerLink]="['/app/board']" skipLocationChange>New</a>
-<ul>
-  <li *ngFor="let board of boards">
-    <a [routerLink]="['/app/board', board.boardId]">{{board.name}}</a>
+<span class="block hfind-main-title text-center margin-top-90">
+	Boards for {{user?.email}}
+</span>
+
+<a [routerLink]="['/app/board']" skipLocationChange>
+	<button class="primary-btn button button--full button--fixed">New</button>
+</a>
+
+<ul class="padding-15">
+  <li *ngFor="let board of boards" class="hfind-saved-boards">
+    <a [routerLink]="['/app/board', board.boardId]" class="hfind-saved-boards__text">{{board.name}}</a>
   </li>
 </ul>
