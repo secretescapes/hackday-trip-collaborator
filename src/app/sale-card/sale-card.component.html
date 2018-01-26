@@ -11,7 +11,7 @@ location
 tags
 -->
 <div>
-  <p>{{sale.title}}</p>
-  <img *ngIf="sale.photos.length > 0" src="{{sale.photos[0].url}}"/>
-  <button>Vote</button>
+  <p class="hfind-sale-card-text">{{sale.title}}</p>
+  <img *ngIf="sale.photos.length > 0" src="{{sale.photos[0].url}}" class="hfind-sale-card-img"/>
+  <button class="hfind-sale-card-vote-cta"></button>
 </div>

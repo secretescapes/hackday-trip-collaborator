@@ -1,7 +1,7 @@
-<p>{{(allSales | async)?.length}} Results</p>
-<ul>
-  <li *ngFor="let sale of allSales | async">
+<p class="hfind-results-title text-center">{{(allSales | async)?.length}} Results</p>
+<ul class="padding-15">
+  <li *ngFor="let sale of allSales | async" class="hfind-vote-sales">
     <app-sale-card [sale]="sale"></app-sale-card>
   </li>
 </ul>
-<button>Done voting</button>
+<button class="primary-btn button button--full button--fixed">Done voting</button>
