@@ -12,13 +12,13 @@
 	left: 0;
 	right: 0;
 	position: absolute;
-	background: #1a1a1a;
 	box-sizing: border-box;
 	height: 100%;
 	padding-top: 25px;
 	color: white;
 }
 
-.hfind-dates-selection:hover, .hfind-dates-selection:active  {
+.hfind-dates-selection:hover, .hfind-dates-selection:active {
 	background: #ff8c00;
+	color: white;
 }
