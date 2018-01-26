@@ -1,5 +1,4 @@
 <div>
-  <p>MMC: {{voted}}</p>
   <p class="hfind-sale-card-text">{{sale.title}}</p>
   <img *ngIf="sale.photos.length > 0" src="{{sale.photos[0].url}}" class="hfind-sale-card-img"/>
   <button [disabled]="disableButton" (click)="vote()" [ngClass]="{'voted': (votedObservable|async) === true }" class="hfind-sale-card-vote-cta"></button>
