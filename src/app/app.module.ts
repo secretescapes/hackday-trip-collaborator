@@ -43,6 +43,8 @@ import {HttpClientModule} from '@angular/common/http';
 import { SaleCardComponent } from './sale-card/sale-card.component';
 import { FilterSalesPipe } from './filter-sales.pipe';
 import {VotesService} from './votes.service';
+import { VotedSalesComponent } from './voted-sales/voted-sales.component';
+import { VotedSalesPipe } from './voted-sales.pipe';
 
 @NgModule({
   declarations: [
@@ -66,7 +68,9 @@ import {VotesService} from './votes.service';
     MonthsComponent,
     AllSalesComponent,
     SaleCardComponent,
-    FilterSalesPipe
+    FilterSalesPipe,
+    VotedSalesComponent,
+    VotedSalesPipe
   ],
   imports: [
     BrowserModule,

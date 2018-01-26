@@ -4,4 +4,4 @@
     <app-sale-card [sale]="sale" [boardId]="boardId" [user]="user"></app-sale-card>
   </li>
 </ul>
-<button class="primary-btn button button--full button--fixed">Done voting</button>
+<button [routerLink]="['/app/board', boardId]" class="primary-btn button button--full button--fixed">Done voting</button>

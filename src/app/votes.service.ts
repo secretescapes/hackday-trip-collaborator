@@ -17,6 +17,7 @@ export class VotesService {
       this.firebaseDatabase.object(`boards/${boardId}/collaborators/${safeUsername}/votedSales/${saleId}`).valueChanges()
     );
   }
+
   downVote(boardId: string, user: string, sale: any): Promise<any> {
     const safeUsername = this.firebaseUtils.sanitizeKey(user);
     return Promise.resolve(
@@ -37,6 +38,7 @@ export class VotesService {
       .catch(this.errorHandler)
     );
   }
+
   addVote(boardId: string, user: string, sale: any): Promise<any> {
     const safeUsername = this.firebaseUtils.sanitizeKey(user);
     return Promise.resolve(
@@ -67,6 +69,10 @@ export class VotesService {
         }))
         .catch(this.errorHandler)
     );
+  }
+
+  getVotedSalesObservable(boardId: string): Promise<Observable<any>> {
+    return Promise.resolve(this.firebaseDatabase.list(`boards/${boardId}/votedSales`).valueChanges());
   }
 
   private errorHandler(err) {

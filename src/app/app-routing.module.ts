@@ -18,6 +18,7 @@ import {DestinationComponent} from 'app/destination/destination.component';
 import {ActivitiesComponent} from 'app/activities/activities.component';
 import {MonthsComponent} from './months/months.component';
 import {AllSalesComponent} from 'app/all-sales/all-sales.component';
+import {VotedSalesComponent} from './voted-sales/voted-sales.component';
 const routes: Routes = [
   { path: '', redirectTo: '/app/boards', pathMatch: 'full' },
   {path: 'auth', component: AuthComponent, children: [
@@ -27,7 +28,7 @@ const routes: Routes = [
   ]},
   {path: 'app', component: RootComponent, children: [
     { path: 'boards', component: BoardsComponent, canActivate: [AuthGuardService] },
-    { path: 'board/:id', component: BoardComponent, canActivate: [AuthGuardService, BoardGuardService] },
+    { path: 'board/:id', component: VotedSalesComponent, canActivate: [AuthGuardService, BoardGuardService] },
     { path: 'board/:id/collaborators', component: CollaboratorsComponent, canActivate: [AuthGuardService, BoardGuardService] },
     { path: 'board/:id/sales', component: AllSalesComponent, canActivate: [AuthGuardService, BoardGuardService] },
     { path: 'board', component: BoardComponent, canActivate: [AuthGuardService] },

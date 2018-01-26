@@ -1,0 +1,6 @@
+<p>Voted sales: {{(votedSales | async | votedSales)?.length}}</p>
+<ul class="padding-15">
+  <li *ngFor="let sale of votedSales | async | votedSales" class="hfind-vote-sales">
+    <app-sale-card [boardId]="boardId" [user]="user" [sale]="sale"></app-sale-card>
+  </li>
+</ul>
