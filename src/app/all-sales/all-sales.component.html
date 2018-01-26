@@ -1,9 +1,7 @@
-<p>
-  all-sales works!
-</p>
-
+<p>{{(allSales | async)?.length}} Results</p>
 <ul>
   <li *ngFor="let sale of allSales | async">
-    {{sale.title}}
+    <app-sale-card [sale]="sale"></app-sale-card>
   </li>
 </ul>
+<button>Done voting</button>

@@ -40,6 +40,7 @@ import {MonthsService} from './months.service';
 import { AllSalesComponent } from './all-sales/all-sales.component';
 import {SalesService} from './sales.service';
 import {HttpClientModule} from '@angular/common/http';
+import { SaleCardComponent } from './sale-card/sale-card.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import {HttpClientModule} from '@angular/common/http';
     DestinationComponent,
     ActivitiesComponent,
     MonthsComponent,
-    AllSalesComponent
+    AllSalesComponent,
+    SaleCardComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,17 @@
+<!--
+things available here:
+id
+title
+start
+end
+summaryTitle
+price
+photos
+location
+tags
+-->
+<div>
+  <p>{{sale.title}}</p>
+  <img *ngIf="sale.photos.length > 0" src="{{sale.photos[0].url}}"/>
+  <button>Vote</button>
+</div>
