@@ -1,4 +1,4 @@
-<p>Voted sales: {{(votedSales | async | votedSales)?.length}}</p>
+<p class="hfind-results-title text-center">Your trip has {{(votedSales | async | votedSales)?.length}} voted sales</p>
 <ul class="padding-15">
   <li *ngFor="let sale of votedSales | async | votedSales" class="hfind-vote-sales">
     <app-sale-card [boardId]="boardId" [user]="user" [sale]="sale"></app-sale-card>
