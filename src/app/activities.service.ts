@@ -12,19 +12,24 @@ export class ActivitiesService {
         label: 'Beach',
         active: false
       },
-      farAway: {
-        name: 'farAway',
-        label: 'Far Away',
+      city: {
+        name: 'city',
+        label: 'City',
         active: false
       },
-      museum: {
-        name: 'museum',
-        label: 'Museum',
+      romance: {
+        name: 'romance',
+        label: 'Romance',
         active: false
       },
-      food: {
-        name: 'food',
-        label: 'Food',
+      boutique: {
+        name: 'boutique',
+        label: 'Shopping',
+        active: false
+      },
+      any: {
+        name: 'any',
+        label: 'I don\'t mind',
         active: false
       }
     }

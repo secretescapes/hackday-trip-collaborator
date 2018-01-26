@@ -41,6 +41,7 @@ import { AllSalesComponent } from './all-sales/all-sales.component';
 import {SalesService} from './sales.service';
 import {HttpClientModule} from '@angular/common/http';
 import { SaleCardComponent } from './sale-card/sale-card.component';
+import { FilterSalesPipe } from './filter-sales.pipe';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { SaleCardComponent } from './sale-card/sale-card.component';
     ActivitiesComponent,
     MonthsComponent,
     AllSalesComponent,
-    SaleCardComponent
+    SaleCardComponent,
+    FilterSalesPipe
   ],
   imports: [
     BrowserModule,
