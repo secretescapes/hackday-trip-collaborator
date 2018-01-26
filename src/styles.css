@@ -99,7 +99,7 @@ body {
 	text-shadow: 0px 1px 13px black;
 }
 
-.hfind-select-item:hover, .hfind-select-item:active {
+.hfind-select-item:hover, .hfind-select-item.active {
 	border: 2px solid #ff8c00;
 }
 

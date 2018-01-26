@@ -6,8 +6,8 @@
 </span>
 
 <ul class="padding-0">
-  <li *ngFor="let activity of activities | async" class="inline-block hfind-select-block {{activity.name}}" [ngClass]="{'active': activity.active === true }">
+  <li *ngFor="let activity of activities | async" class="inline-block hfind-select-block {{activity.name}}">
     <input id="choice-{{activity.name}}" (change)="updateActivity(activity.name, activity.active)" [checked]="activity.active" type="checkbox" value="{{activity.name}}">
-    <label for="choice-{{activity.name}}" class="hfind-select-item">{{activity.label}}</label>
+    <label [ngClass]="{'active': activity.active === true }" for="choice-{{activity.name}}" class="hfind-select-item">{{activity.label}}</label>
   </li>
 </ul>
