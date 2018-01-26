@@ -9,7 +9,7 @@ export class VotedSalesPipe implements PipeTransform {
     if (!value) {
       return value;
     }
-    return value.filter(x => x !== null && x.votes > 0);
+    return value.filter(x => x !== null && x.votes > 0).sort((x, y) => x.votes === y.votes ? 0 : (x.votes > y.votes ? -1 : 1));
   }
 
 }
