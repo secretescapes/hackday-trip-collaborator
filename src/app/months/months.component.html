@@ -1,10 +1,14 @@
-<p>
+<span class="block hfind-main-title text-center margin-top-90">
   When would you like to do?
+</span>
+
+<span class="block text-center">
   (select as many as you want)
-</p>
-<ul>
-  <li *ngFor="let month of months | async">
+</span>
+
+<ul class="padding-15">
+  <li *ngFor="let month of months | async" class="inline-block hfind-dates-selection">
     <input id="choice-{{month.name}}" (change)="updateMonth(month.name, month.active)" [checked]="month.active" type="checkbox" value="{{month.name}}">
-    <label for="choice-{{month.name}}">{{month.label}}</label>
+    <label for="choice-{{month.name}}" class="hfind-dates-selection__item">{{month.label}}</label>
   </li>
 </ul>

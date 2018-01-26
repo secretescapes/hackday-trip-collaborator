@@ -89,10 +89,10 @@ body {
 	left: 0;
 	right: 0;
 	position: absolute;
-	background: red;
+	background: #c2c2c2;
 	box-sizing: border-box;
 	height: 100%;
-	padding-top: 30px;
+	padding-top: 60px;
 	color: white;
 }
 
@@ -102,4 +102,15 @@ body {
 
 .padding-0 {
 	padding: 0;
+}
+
+
+
+.hfind-dates-selection__item:visited {
+	background: #ff8c00;
+	color: white;
+}
+
+input[type="checkbox"] {
+	display:none;
 }

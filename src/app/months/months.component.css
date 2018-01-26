@@ -1,0 +1,24 @@
+.hfind-dates-selection {
+	height: 70px;
+	width: 110px;
+	margin: 2px;
+	background: #c1c1c1;
+	position: relative;
+	text-align: center;
+}
+
+.hfind-dates-selection__item {
+	text-align: center;
+	left: 0;
+	right: 0;
+	position: absolute;
+	background: #c2c2c2;
+	box-sizing: border-box;
+	height: 100%;
+	padding-top: 25px;
+	color: white;
+}
+
+.hfind-dates-selection:active {
+	background: #ff8c00;
+}
