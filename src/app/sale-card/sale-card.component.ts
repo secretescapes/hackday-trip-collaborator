@@ -1,7 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {VotesService} from '../votes.service';
 import {Observable} from 'rxjs';
-import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-sale-card',
@@ -14,8 +13,9 @@ export class SaleCardComponent implements OnInit {
   @Input() boardId: string;
   @Input() user: string;
 
-  voted: Observable<boolean>;
+  votedObservable: Observable<boolean>;
   disableButton = false;
+  voted: boolean;
 
   constructor(
     private votesService: VotesService
@@ -23,12 +23,17 @@ export class SaleCardComponent implements OnInit {
 
 
   ngOnInit() {
-    this.votesService.getVoteObservable(this.boardId, this.user, this.sale.id).then(voted => this.voted = voted);
+    this.votesService.getVoteObservable(this.boardId, this.user, this.sale.id).then(voted => this.votedObservable = voted)
+      .then(_ => this.votedObservable.subscribe(newValue => this.voted = newValue));
   }
 
   vote() {
     this.disableButton = true;
-    this.votesService.addVote(this.boardId, this.user, this.sale).then(_ => this.disableButton = false);
+    if (!this.voted) {
+      this.votesService.addVote(this.boardId, this.user, this.sale).then(_ => this.disableButton = false);
+    } else {
+      this.votesService.downVote(this.boardId, this.user, this.sale).then(_ => this.disableButton = false);
+    }
   }
 
 }

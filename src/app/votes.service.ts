@@ -17,14 +17,32 @@ export class VotesService {
       this.firebaseDatabase.object(`boards/${boardId}/collaborators/${safeUsername}/votedSales/${saleId}`).valueChanges()
     );
   }
-
+  downVote(boardId: string, user: string, sale: any): Promise<any> {
+    const safeUsername = this.firebaseUtils.sanitizeKey(user);
+    return Promise.resolve(
+      this.firebaseDatabase.database.ref(`boards/${boardId}/collaborators/${safeUsername}/votedSales`).once('value')
+      .then(snapshot => {
+        if (!snapshot.hasChild(`${sale.id}`)) {
+          return Promise.reject(new Error('err_user_already_voted'));
+        }
+      })
+      .then(_ => this.firebaseDatabase.database.ref(`boards/${boardId}/collaborators/${safeUsername}/votedSales/${sale.id}`).remove())
+      .then(_ => this.firebaseDatabase.database.ref(`boards/${boardId}/votedSales`).once('value'))
+      .then(_ => this.firebaseDatabase.database.ref(`boards/${boardId}/votedSales/${sale.id}/votes`).transaction(votes => {
+        if (votes) {
+          votes = votes - 1;
+        }
+        return votes;
+      }))
+      .catch(this.errorHandler)
+    );
+  }
   addVote(boardId: string, user: string, sale: any): Promise<any> {
     const safeUsername = this.firebaseUtils.sanitizeKey(user);
     return Promise.resolve(
       this.firebaseDatabase.database.ref(`boards/${boardId}/collaborators/${safeUsername}/votedSales`).once('value')
         .then(snapshot => {
           if (snapshot.hasChild(`${sale.id}`)) {
-            // reject
             return Promise.reject(new Error('err_user_already_voted'));
           }
         })
