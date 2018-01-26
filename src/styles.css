@@ -12,6 +12,7 @@ body {
 	font-weight:600;
   display: inline-block;
 	cursor: pointer;
+	border: none;
 }
 
 .button--full {
@@ -69,6 +70,8 @@ body {
 	top: 20px;
 	font-size: 14px;
 	font-weight: 600;
+	border: none;
+	background: none;
 }
 
 .hfind-logout-button {
@@ -89,15 +92,15 @@ body {
 	left: 0;
 	right: 0;
 	position: absolute;
-	background: #c2c2c2;
 	box-sizing: border-box;
 	height: 100%;
 	padding-top: 60px;
 	color: white;
+	text-shadow: 0px 1px 13px black;
 }
 
 .hfind-select-item:hover, .hfind-select-item:active {
-	background: #ff8c00;
+	border: 2px solid #ff8c00;
 }
 
 .padding-15 {
@@ -108,9 +111,8 @@ body {
 	padding: 0;
 }
 
-.hfind-dates-selection__item:visited {
-	background: #ff8c00;
-	color: white;
+.padding-left-30 {
+	padding-left: 30px;
 }
 
 input[type="checkbox"] {
@@ -141,4 +143,53 @@ input[type="checkbox"] {
 	text-shadow: 0px 1px 13px black;
 	padding: 0 10px;
 	width: 70%;
+}
+
+li {
+	list-style: none;
+}
+
+.europe {
+	background: url("https://d1x3cbuht6sy0f.cloudfront.net/sales/17114/9d5d431b_e35a_411b_becb_2f4e443450ec.jpg");
+	background-size: cover;
+}
+
+.london {
+	background: url("https://d1x3cbuht6sy0f.cloudfront.net/sales/54150/f57871bf_d518_415e_a445_40b6e9a1699c.jpg");
+	background-size: cover;
+}
+
+.uk {
+	background: url("https://d1x3cbuht6sy0f.cloudfront.net/sales/40049/291ca87d_1cbc_468b_b136_d58d20fdeead.jpg");
+	background-size: cover;
+}
+
+.world {
+	background: url("https://d1x3cbuht6sy0f.cloudfront.net/sales/54198/04379385_6aa0_40bb_bc7f_919cfcc60de9.jpg");
+	background-size: cover;
+}
+
+.beach {
+	background: url("https://d1x3cbuht6sy0f.cloudfront.net/sales/42163/db39b1af_223c_419a_a2e2_e09586e11ae1.jpg");
+	background-size: cover;
+}
+
+.boutique {
+	background: url("https://d1x3cbuht6sy0f.cloudfront.net/sales/58730/c0f94395_b1bc_4055_902b_8b1d73c1d040.jpg");
+	background-size: cover;
+}
+
+.city {
+	background: url("https://d1x3cbuht6sy0f.cloudfront.net/sales/41793/a490dc12_b12d_4062_a80c_53845e66c23a.jpg");
+	background-size: cover;
+}
+
+.romance {
+	background: url("https://d1x3cbuht6sy0f.cloudfront.net/sales/32187/01db8f72_4f36_42ae_b001_359ec5eb16ef.jpg");
+	background-size: cover;
+}
+
+.any {
+	background: url("http://4.bp.blogspot.com/-WvzGhegNT5k/U59P62AO3sI/AAAAAAAAAz0/mxGRqbS6nCs/s1600/shrugging-shoulders.jpg");
+	background-size: cover;
 }

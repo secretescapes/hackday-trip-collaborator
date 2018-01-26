@@ -19,6 +19,6 @@
 	color: white;
 }
 
-.hfind-dates-selection:active {
+.hfind-dates-selection:hover, .hfind-dates-selection:active  {
 	background: #ff8c00;
 }
