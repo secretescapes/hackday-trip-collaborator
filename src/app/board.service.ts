@@ -71,4 +71,8 @@ export class BoardService {
     return Promise.resolve(this.firebaseDatabase.object(`boards/${boardId}`).valueChanges());
   }
 
+  getBoard(boardId: string): Promise<any> {
+    return this.firebaseDatabase.database.ref(`boards/${boardId}`).once('value').then(snapshot => snapshot.val());
+  }
+
 }
