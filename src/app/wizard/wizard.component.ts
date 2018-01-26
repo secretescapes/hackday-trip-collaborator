@@ -61,7 +61,7 @@ export class WizardComponent implements OnInit {
   }
 
   onFinishWizard() {
-    this.router.navigate([`/app/board/${this.boardId}`]);
+    this.router.navigate([`/app/board/${this.boardId}/sales`]);
   }
 
   private goToCurrentPage() {

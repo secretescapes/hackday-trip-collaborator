@@ -29,8 +29,8 @@ const routes: Routes = [
     { path: 'boards', component: BoardsComponent, canActivate: [AuthGuardService] },
     { path: 'board/:id', component: BoardComponent, canActivate: [AuthGuardService, BoardGuardService] },
     { path: 'board/:id/collaborators', component: CollaboratorsComponent, canActivate: [AuthGuardService, BoardGuardService] },
+    { path: 'board/:id/sales', component: AllSalesComponent, canActivate: [AuthGuardService, BoardGuardService] },
     { path: 'board', component: BoardComponent, canActivate: [AuthGuardService] },
-    { path: 'allSales', component: AllSalesComponent, canActivate: [AuthGuardService] },
     { path: 'board/:id/wizard', component: WizardComponent, canActivate: [AuthGuardService, BoardGuardService], children: [
       {path: 'name-and-collaborators', component: NameAndCollaboratorsComponent},
       {path: 'destination', component: DestinationComponent},
