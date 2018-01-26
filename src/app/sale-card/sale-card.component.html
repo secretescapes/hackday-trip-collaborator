@@ -1,17 +1,5 @@
-<!--
-things available here:
-id
-title
-start
-end
-summaryTitle
-price
-photos
-location
-tags
--->
 <div>
   <p class="hfind-sale-card-text">{{sale.title}}</p>
   <img *ngIf="sale.photos.length > 0" src="{{sale.photos[0].url}}" class="hfind-sale-card-img"/>
-  <button class="hfind-sale-card-vote-cta"></button>
+  <button [disabled]="disableButton" (click)="vote()" [ngClass]="{'voted': (voted|async) === true }" class="hfind-sale-card-vote-cta"></button>
 </div>

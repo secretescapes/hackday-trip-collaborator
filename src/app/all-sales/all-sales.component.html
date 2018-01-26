@@ -1,7 +1,7 @@
 <p class="hfind-results-title text-center">{{(allSales | async | filterSales: filters)?.length}} Results</p>
 <ul class="padding-15">
   <li *ngFor="let sale of allSales | async | filterSales: filters" class="hfind-vote-sales">
-    <app-sale-card [sale]="sale"></app-sale-card>
+    <app-sale-card [sale]="sale" [boardId]="boardId" [user]="user"></app-sale-card>
   </li>
 </ul>
 <button class="primary-btn button button--full button--fixed">Done voting</button>

@@ -42,6 +42,7 @@ import {SalesService} from './sales.service';
 import {HttpClientModule} from '@angular/common/http';
 import { SaleCardComponent } from './sale-card/sale-card.component';
 import { FilterSalesPipe } from './filter-sales.pipe';
+import {VotesService} from './votes.service';
 
 @NgModule({
   declarations: [
@@ -90,6 +91,7 @@ import { FilterSalesPipe } from './filter-sales.pipe';
     DestinationService,
     ActivitiesService,
     MonthsService,
+    VotesService,
     SalesService
   ],
   bootstrap: [AppComponent]

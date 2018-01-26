@@ -3,6 +3,7 @@ import {SalesService} from '../sales.service';
 import {Observable} from 'rxjs';
 import {ActivatedRoute} from '@angular/router';
 import {BoardService} from '../board.service';
+import {AuthService} from '../auth.service';
 
 @Component({
   selector: 'app-all-sales',
@@ -12,6 +13,7 @@ import {BoardService} from '../board.service';
 export class AllSalesComponent implements OnInit {
 
   boardId: string;
+  user: string;
   allSales: Observable<any[]>;
   board: any;
   filters: any;
@@ -19,6 +21,7 @@ export class AllSalesComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private boardService: BoardService,
+    private authService: AuthService,
     private salesService: SalesService
   ) { }
 
@@ -39,6 +42,7 @@ export class AllSalesComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.authService.getUser().then(user => this.user = user.email);
     this.setBoardIdFromParams();
     this.salesService.getAllLiveSales().then(data => {
       this.allSales = data;
