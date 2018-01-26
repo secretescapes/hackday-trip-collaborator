@@ -1,0 +1,9 @@
+<p>
+  all-sales works!
+</p>
+
+<ul>
+  <li *ngFor="let sale of allSales | async">
+    {{sale.title}}
+  </li>
+</ul>
