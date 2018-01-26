@@ -6,7 +6,7 @@
 </span>
 
 <ul class="padding-0">
-  <li *ngFor="let destination of destinations | async" class="inline-block hfind-select-block {{destination.name}}">
+  <li *ngFor="let destination of destinations | async" class="inline-block hfind-select-block {{destination.name}}" [ngClass]="{'active': destination.active === true }">
     <input id="choice-{{destination.name}}" (change)="updateDestination(destination.name, destination.active)" [checked]="destination.active" type="checkbox" value="{{destination.name}}">
     <label for="choice-{{destination.name}}" class="hfind-select-item">{{destination.label}}</label>
   </li>
