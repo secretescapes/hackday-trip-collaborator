@@ -25,7 +25,7 @@ export class SalesService {
   }
 
   refreshSalesCache(): Promise<void> {
-    return this.http.get<any[]>('http://localhost:9090/flashsales/v3/sales?se-api-token=96c5fc07-6dda-4448-bac6-00e817adf4d1')
+    return this.http.get<any[]>('https://dev-14154.fs-staging.escapes.tech/v3/sales?se-api-token=96c5fc07-6dda-4448-bac6-00e817adf4d1')
       .toPromise()
       .then(fullSales => fullSales.map((sale) => ({
           id: sale.id,
@@ -33,12 +33,12 @@ export class SalesService {
           start: sale.start,
           end: sale.end,
           summaryTitle: sale.summaryTitle,
-          priceDiscounted: sale.price.discounted,
+          price: sale.price,
           photos: sale.photos,
           location: sale.location,
           tags: sale.tags
         }
-        )))
+        )).filter((sale) => sale.price != null))
         .then((sales) => this.firebaseDatabase.list(`/allSalesCache`).set('sales', sales))
         .then(_ => this.firebaseDatabase.object(`/allSalesCache/lastUpdated`).set(new Date().toISOString()))
         .catch((error) => console.log(error));
