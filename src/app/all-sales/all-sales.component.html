@@ -1,12 +1,6 @@
-<<<<<<< HEAD
-<p class="hfind-results-title text-center">{{(allSales | async)?.length}} Results</p>
+<p class="hfind-results-title text-center">{{(allSales | async | filterSales: filters)?.length}} Results</p>
 <ul class="padding-15">
-  <li *ngFor="let sale of allSales | async" class="hfind-vote-sales">
-=======
-<p>{{(allSales | async | filterSales: filters)?.length}} Results</p>
-<ul>
-  <li *ngFor="let sale of allSales | async | filterSales: filters">
->>>>>>> origin/master
+  <li *ngFor="let sale of allSales | async | filterSales: filters" class="hfind-vote-sales">
     <app-sale-card [sale]="sale"></app-sale-card>
   </li>
 </ul>
